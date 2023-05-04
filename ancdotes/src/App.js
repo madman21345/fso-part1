@@ -8,6 +8,15 @@ const Button = ({ handleClick, text }) => {
   )
 }
 
+const Popular = ({ pop, anecdotes }) => {
+  if(pop === null) {return(<p>No Votes Yet</p>)}
+  return (
+    <p>
+      {anecdotes[pop.most]}
+    </p>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -21,20 +30,28 @@ const App = () => {
   ]
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState({0: 0,1: 0,2: 0,3: 0,4: 0,5: 0,6: 0,7: 0})
+  const [pop, setPop] = useState(null)
 
   const handleRandom = () => setSelected( Math.floor(Math.random() * anecdotes.length) ) 
   const handleVote = () => {
     const copy = {...votes}
     copy[selected] += 1
+    if(pop === null) {setPop({most: selected,vote: copy[selected]}) }
+    else{
+      if(copy[selected] > pop.vote) {setPop({most: selected,vote: copy[selected]})}
+    }
     setVotes(copy)
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <Button handleClick={handleRandom} text="next anecdote" />
       <Button handleClick={handleVote} text="vote" />
+      <h1>Anecdote with most votes</h1>
+      <Popular pop={pop} anecdotes={anecdotes} />
     </div>
   )
 }
