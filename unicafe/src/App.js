@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const Statistics = ({ stats }) => {
   const {good, neutral, bad, total} = stats
+  if(total === 0) {return <div>No feedback given yet</div>}
   const avg = (good - bad)/total
   const pos = good/total*100
   
