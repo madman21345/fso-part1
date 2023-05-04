@@ -1,2 +1,2 @@
-# fso-part1
- FullStackOpen Part1
+# FullStackOpen Part1
+"courseinfo", "unicafe", "ancdotes" submittals
