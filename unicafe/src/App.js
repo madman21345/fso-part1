@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const DisplayStats = ({ stats }) => {
+const Statistics = ({ stats }) => {
   const {good, neutral, bad, total} = stats
   const avg = (good - bad)/total
   const pos = good/total*100
@@ -60,7 +60,7 @@ const App = () => {
       <Button handleClick={handleBad} text={"bad"}/>
 
       <h1>statistics</h1>
-      <DisplayStats stats={stats} />
+      <Statistics stats={stats} />
 
 
     </div>
